@@ -20,7 +20,10 @@
     },
     "android": {
       "package": "com.whdev.lottoQrSacanner",
-      "versionCode": 1
+      "versionCode": 1,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-9552831572365004~8215402026"
+      }
     }
   }
 }

@@ -7,6 +7,14 @@ import { Button } from "react-native-paper";
 import QrData from "./components/QrData";
 import Haeder from "./components/Haeder";
 
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from "expo-ads-admob";
+
 function QrCode() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
@@ -31,6 +39,10 @@ function QrCode() {
       setHasPermission(status === "granted");
     })();
   }, []);
+
+  const bannerError = (e) => {
+    alert(e);
+  };
 
   const handleBarCodeScanned = ({ type, data }) => {
     setNumbersArr([]);
@@ -135,7 +147,6 @@ function QrCode() {
           스캔 중...
         </Button>
       )}
-
       {scanned && (
         <Button
           icon="qrcode"
@@ -188,6 +199,12 @@ function QrCode() {
             ></QrData>
           </View>
         )}
+
+      <AdMobBanner
+        bannerSize="fullBanner"
+        adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+        onDidFailToReceiveAdWithError={bannerError}
+      />
     </View>
   );
 }
